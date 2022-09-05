@@ -100,22 +100,7 @@ def get_birthday(birthday, year, today):
         birth_date = year_date
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
     return birth_day
- 
- 
-# def get_ciba():
-#     url = "http://open.iciba.com/dsapi/"
-#     headers = {
-#         'Content-Type': 'application/json',
-#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-#                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-#     }
-#     r = get(url, headers=headers)
-#     note_en = r.json()["content"]
-#     note_ch = r.json()["note"]
-#     return note_ch, note_en
- 
- 
-# def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en):
+
  def send_message(to_user, access_token, region_name, weather, temp, wind_dir):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
@@ -165,15 +150,7 @@ def get_birthday(birthday, year, today):
             "love_day": {
                 "value": love_days,
                 "color": get_color()
-            },
-#             "note_en": {
-#                 "value": note_en,
-#                 "color": get_color()
-#             },
-#             "note_ch": {
-#                 "value": note_ch,
-#                 "color": get_color()
-#             }
+            }
         }
     }
     for key, value in birthdays.items():
@@ -226,5 +203,5 @@ if __name__ == "__main__":
     # 公众号推送消息
     for user in users:
 #         send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
-      send_message(user, accessToken, region, weather, temp, wind_dir)
+          send_message(user, accessToken, region, weather, temp, wind_dir)
     os.system("pause")
