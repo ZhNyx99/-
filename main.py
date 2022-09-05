@@ -102,17 +102,17 @@ def get_birthday(birthday, year, today):
     return birth_day
  
  
-def get_ciba():
-    url = "http://open.iciba.com/dsapi/"
-    headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = get(url, headers=headers)
-    note_en = r.json()["content"]
-    note_ch = r.json()["note"]
-    return note_ch, note_en
+# def get_ciba():
+#     url = "http://open.iciba.com/dsapi/"
+#     headers = {
+#         'Content-Type': 'application/json',
+#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+#                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+#     }
+#     r = get(url, headers=headers)
+#     note_en = r.json()["content"]
+#     note_ch = r.json()["note"]
+#     return note_ch, note_en
  
  
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en):
@@ -224,5 +224,6 @@ if __name__ == "__main__":
     weather, temp, wind_dir = get_weather(region)
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+#         send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+      send_message(user, accessToken, region, weather, temp, wind_dir)
     os.system("pause")
