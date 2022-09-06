@@ -6,13 +6,11 @@ from zhdate import ZhDate
 import sys
 import os
  
- 
 def get_color():
     # 获取随机颜色
     get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF), range(n)))
     color_list = get_colors(100)
     return random.choice(color_list)
- 
  
 def get_access_token():
     # appId
@@ -29,8 +27,7 @@ def get_access_token():
         sys.exit(1)
     # print(access_token)
     return access_token
- 
- 
+
 def get_weather(region):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -59,7 +56,6 @@ def get_weather(region):
     # 风向
     wind_dir = response["now"]["windDir"]
     return weather, temp, wind_dir
- 
  
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
@@ -100,7 +96,6 @@ def get_birthday(birthday, year, today):
         birth_date = year_date
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
     return birth_day
- 
  
 # def get_ciba():
 #     url = "http://open.iciba.com/dsapi/"
@@ -202,7 +197,6 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir):
     else:
         print(response)
  
- 
 if __name__ == "__main__":
     try:
         with open("config.txt", encoding="utf-8") as f:
@@ -223,12 +217,13 @@ if __name__ == "__main__":
     # 传入地区获取天气信息
     region = config["region"]
     weather, temp, wind_dir = get_weather(region)
-    note_ch = config["note_ch"]
-    note_en = config["note_en"]
+#     note_ch = config["note_ch"]
+#     note_en = config["note_en"]
     # if note_ch == "" and note_en == "":
     #     # 获取词霸每日金句
     #     note_ch, note_en = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+#         send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+          send_message(user, accessToken, region, weather, temp, wind_dir)
     os.system("pause")
